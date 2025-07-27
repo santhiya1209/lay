@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <style>
+          body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    width:100vw;
+    height: 10vh;
+    font-family: 'Poppins';
+    font-size: 22px;
+  }
+
+.navbar {
+  display: flex; /* Makes elements in the navbar arrange horizontally */
+  justify-content: space-between; /* Distributes items with space between them */
+  align-items: center; /* Vertically aligns items in the center */
+  background-color: white; /* Dark background color */
+  padding: 10px 20px; /* Padding around the navbar */
+  color: #000000; /* White text color */
+  border:2px solid #00b4d8; ;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  color:black;
+}
+
+.logo {
+  height: 40px; /* Adjust logo size as needed */
+  margin-right: 10px;
+  color:black;
+}
+
+.brand-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+}
+
+.navbar-links {
+  list-style: none; /* Removes default bullet points from list */
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navbar-links li {
+  margin-right: 20px;
+}
+
+.navbar-links a {
+  color: black;
+  text-decoration: none;
+  padding: 10px 0;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block; /* Allows the dropdown button and menu to be side-by-side */
+}
+
+.dropdown-content {
+  display: none; /* Hidden by default */
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(241, 239, 239, 0.959);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: white;
+  border: 1px solid black;
+  padding: 10px;
+  color:#00b4d8;
+  border-radius: 20px;
+  font-size: 18px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block; /* Shows dropdown menu on hover */
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar input {
+  border: 3px solid #00b4d8;
+  padding: 8px;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.search-bar button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.navbar-actions a {
+  color:black;
+  border:none;
+  text-decoration: none;
+  margin-left: 15px;
+  font-size: 1.2rem;
+}
+
+.navbar-actions a:hover {
+  color: #ddd;
+}
+h3{
+    font-size: 18px;
+}
+.product-card {
+            width: 300px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative; /* Needed for positioning the "New" button */
+        }
+
+        .new-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width:100px;
+            background-color:#00b4d8 ;
+            color: #fff;
+            padding:  10px;
+            margin:0 0px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .product-image {
+            width: 400px;
+            height: 100px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 50%;
+            height: 50%;
+            object-fit: cover;
+        }
+
+        .product-content {
+            padding: 15px;
+            background-color: #00b4d8;
+        }
+
+        .product-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .star-rating {
+            margin-bottom: 10px;
+            color: #ffc107; /* Golden color for stars */
+        }
+
+        .star-rating .fa-star {
+            font-size: 1.2em;
+        }
+
+        .price-details {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 15px;
+        }
+
+        .deleted-price {
+            text-decoration: line-through; /* Strikethrough effect */
+            color: #999;
+            margin-right: 10px;
+            font-size: 0.9em;
+        }
+
+        .current-price {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+        .container2 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+            gap: 20px; /* Space between cards */
+            max-width: 1000px;
+            height: 400px;
+            margin:100px;
+            padding: 50px;
+            margin: 0 auto; /* Center the grid */
+            justify-items: center; /* Center items within grid cells */
+        }
+
+        .product-card1 {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden; /* For the "New" button */
+            width: 100%; /* Ensure card takes full width of grid cell */
+            max-width: 300px; /* Limit individual card width */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Push buy button to the bottom */
+            min-height: 400px; /* Ensure consistent height */
+        }
+
+        .new-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color:#00b4d8; /* Orange color for "New" */
+            color: white;
+            padding: 5px 10px;
+            border-radius: 10px;
+            width:50px;
+            height: 20px;
+            margin: 0px 0px;
+            font-size: 0.8em;
+            font-weight: bold;
+            z-index: 1; /* Ensure badge is above other elements */
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px; /* Fixed height for image */
+            object-fit: cover; /* Crop and center image */
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 2px;
+          
+        }
+
+        .product-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+            background-color:#00b4d8 ;
+        
+            
+        }
+
+        .product-price {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+            background-color: #00b4d8;
+
+        }
+
+        .product-description {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 20px;
+            flex-grow: 1; /* Allow description to take available space */
+        }
+
+        .buy-button {
+            background-color: #00b4d8; /* Green color for "Buy" */
+            color: white;
+            float:left;
+            margin-left: auto;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            width: 30%; /* Full width button */
+            transition: background-color 0.3s ease;
+          
+        }
+
+        .buy-button:hover {
+            background-color: #45a049;
+        }
+        .rating {
+  background-color:#00b4d8;
+  
+   color: gold;
+}
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container2 {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container2 {
+                grid-template-columns: 1fr; /* 1 column on mobile */
+            }
+        }
+
+        .pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+  margin: 0 4px;
+}
+
+.pagination a.active {
+  background-color: #00ccff;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+  .fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* Add a hover effect if you want */
+.fa:hover {
+  opacity: 0.7;
+}
+
+*{
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        color: white;
+    }
+    footer{
+        background: #343434;
+        padding-top: 50px;
+    }
+    .container{
+        width: 1140px;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+    }
+    .footer-content{
+        width: 33.3%;
+    }
+    h3{
+        font-size: 28px;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    .footer-content p{
+        width:190px;
+        margin: auto;
+        padding: 7px;
+    }
+    .footer-content ul{
+        text-align: center;
+    }
+    .list{
+        padding: 0;
+    }
+    .list li{
+        width: auto;
+        text-align: center;
+        list-style-type:none;
+        padding: 7px;
+        position: relative;
+    }
+    .list li::before{
+        content: '';
+        position: absolute;
+        transform: translate(-50%,-50%);
+        left: 50%;
+        top: 100%;
+        width: 0;
+        height: 2px;
+        background: #f18930;
+        transition-duration: .5s;
+    }
+    .list li:hover::before{
+        width: 70px;
+    }
+    .social-icons{
+        text-align: center;
+        padding: 0;
+    }
+    .social-icons li{
+        display: inline-block;
+        text-align: center;
+        padding: 5px;
+    }
+    .social-icons i{
+        color: white;
+        font-size: 25px;
+    }
+    a{
+        text-decoration: none;
+    }
+    a:hover{
+        color: ;
+    }
+    .social-icons i:hover{
+        color: #f18930;
+    }
+    .bottom-bar{
+        background: #f18930;
+        text-align: center;
+        padding: 10px 0;
+        margin-top: 50px;
+    }
+    .bottom-bar p{
+        color: #343434;
+        margin: 0;
+        font-size: 16px;
+        padding: 7px;
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+body{
+	line-height: 1.5;
+	font-family: 'Poppins', sans-serif;
+}
+*{
+	margin:0;
+	padding:0;
+	box-sizing: border-box;
+}
+.container{
+	max-width: 1170px;
+	margin:auto;
+}
+.row{
+	display: flex;
+	flex-wrap: wrap;
+}
+ul{
+	list-style: none;
+}
+.footer{
+	background-color:#00b4d8 ;
+    padding: 70px 0;
+}
+.footer-col{
+   width: 25%;
+   padding: 0 15px;
+}
+.footer-col h4{
+	font-size: 18px;
+	color: #ffffff;
+	text-transform: capitalize;
+	margin-bottom: 35px;
+	font-weight: 500;
+	position: relative;
+}
+.footer-col h4::before{
+	content: '';
+	position: absolute;
+	left:0;
+	bottom: -10px;
+	background-color: black;
+	height: 2px;
+	box-sizing: border-box;
+	width: 50px;
+}
+.footer-col ul li:not(:last-child){
+	margin-bottom: 10px;
+}
+.footer-col ul li a{
+	font-size: 16px;
+	text-transform: capitalize;
+	color: #ffffff;
+	text-decoration: none;
+	font-weight: 300;
+	color: #bbbbbb;
+	display: block;
+	transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+	color: #ffffff;
+	padding-left: 8px;
+}
+.footer-col .social-links a{
+	display: inline-block;
+	height: 40px;
+	width: 40px;
+	background-color: rgba(255,255,255,0.2);
+	margin:0 10px 10px 0;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 50%;
+	color: #ffffff;
+	transition: all 0.5s ease;
+}
+.footer-col .social-links a:hover{
+	color: #24262b;
+	background-color: #ffffff;
+}
+footer {
+  text-align: center; /* Centers the text horizontally */
+  padding: 20px; /* Adds space around the content */
+  background-color: #00b4d8 ; /* Sets a dark background color */
+  color: #fff; /* Sets white text color */
+  font-size: 0.9em; /* Adjusts font size */
+}
+.new-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width:100px;
+            height: 40px;
+            background-color:#00b4d8 ;
+            color: #fff;
+            padding:  10px;
+            margin:0 0px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+/*responsive*/
+@media(max-width: 767px){
+  .footer-col{
+    width: 50%;
+    margin-bottom: 30px;
+}
+}
+@media(max-width: 574px){
+  .footer-col{
+    width: 100%;
+}
+}
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+    <div class="navbar-brand">
+    <img src="images/logo.png" alt="Logo" class="logo">
+    <a href="#" class="brand-title">EarthBubs</a>
+    </div>
+   <ul class="navbar-links">
+    <li><a href="#">Home</a></li>
+    <li class="dropdown">
+      <a href="#" class="dropbtn">Products</a>
+      <div class="dropdown-content">
+        <a href="#">Pampers</a>
+        <a href="#">Boy's Fashions</a>
+        <a href="#">Girl's Fashions</a>
+        <a href="#">Soap</a>
+        <a href="#">Stroller</a>
+        <a href="#">Bottle</a>
+
+      </div>
+    </li>
+     <li><a href="#">Offers</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+
+
+  <div class="navbar-actions">
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <button type="submit"><i class="fa fa-search"></i></button>
+      <a href="#"><i class="fa fa-shopping-cart"></i></a>
+      <a href="#"><i class="fa fa-user"></i></a>
+    </div>
+    
+  </div>
+  </nav>
+    <h3>Home > products > Girls Fashion</h1>
+
+         <div class="container2">
+        <div class="product-card1">
+            <span class="new-badge">New</span>
+            <img src="images/str6.png" alt="Product Image" class="product-image">
+            <button class="buy-button">Buy Now</button>
+            <h3 class="product-title">Wipes</h3>
+            <div class="rating">
+	            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+            </div>
+             <p class="product-price"><del>MRP 444.00</del> Price $1299.00</p>
+            
+        </div>
+        <div class="product-card1">
+            <span class="new-badge">New</span>
+            <img src="images/str1.png" alt="Product Image" class="product-image">
+            <button class="buy-button">Buy Now</button>
+            <h3 class="product-title">Wipes</h3>
+            <div class="rating">
+	            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+            </div>
+             <p class="product-price"><del>MRP 444.00</del> Price $1299.00</p>
+            
+        </div>
+        <div class="product-card1">
+            <span class="new-badge">New</span>
+            <img src="images/str2.png" alt="Product Image" class="product-image">
+            <button class="buy-button">Buy Now</button>
+            <h3 class="product-title">Wipes</h3>
+            <div class="rating">
+	            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+            </div>
+             <p class="product-price"><del>MRP 444.00</del> Price $1299.00</p>     
+        </div>
+           <p><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></p> 
+       </div>
+    </section>
+
+<br>
+
+      <div class="container2">
+        <div class="product-card1">
+            <span class="new-badge">New</span>
+            <img src="images/str3.png" alt="Product Image" class="product-image">
+            <button class="buy-button">Buy Now</button>
+            <h3 class="product-title">Wipes</h3>
+            <div class="rating">
+	            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+            </div>
+             <p class="product-price"><del>MRP 444.00</del> Price $1299.00</p>
+            
+        </div>
+        <div class="product-card1">
+            <span class="new-badge">New</span>
+            <img src="images/str4.png" alt="Product Image" class="product-image">
+            <button class="buy-button">Buy Now</button>
+            <h3 class="product-title">Wipes</h3>
+            <div class="rating">
+	            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+            </div>
+             <p class="product-price"><del>MRP 444.00</del> Price $1299.00</p>
+            
+        </div>
+        <div class="product-card1">
+            <span class="new-badge">New</span>
+            <img src="images/str5.png" alt="Product Image" class="product-image">
+            <button class="buy-button">Buy Now</button>
+            <h3 class="product-title">Wipes</h3>
+            <div class="rating">
+	            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+            </div>
+             <p class="product-price"><del>MRP 444.00</del> Price $1299.00</p>     
+        </div>
+           <p><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></p> 
+       </div>
+    </section>
+
+    <br><br>
+    <br><br>
+    <br>
+    <br>
+
+ <div class="center">
+  <div class="pagination">
+  <a href="#">❮</a><a href="#" class="active">1</a>
+  <a href="#">2</a>
+  <a href="#">3</a>
+  <a href="#">4</a>
+  <a href="#">5</a>
+  <a href="#">6</a>
+  <a href="#">❯</a>
+  </div>
+</div>
+
+<footer class="footer">
+  	 <div class="container">
+  	 	<div class="row">
+  	 		<div class="footer-col">
+  	 			<h4>KNOW</h4>
+                <hr>
+  	 			<ul>
+  	 				<li><a href="#">About us</a></li>
+  	 				<li><a href="#">About EarthBubs Store</a></li>
+  	 				<li><a href="#">Bulk Purchase & Corporate Gifts</a></li>
+  	
+  	 			</ul>
+  	 		</div>
+  	 		<div class="footer-col">
+  	 			<h4>TERMS & CONDITIONS</h4>
+  	 			<ul>
+  	 				
+  	 				<li><a href="#">Shipping & Return Policies</a></li>
+  	 				<li><a href="#">Privacy Policy</a></li>
+  	 				<li><a href="#">FAQ's</a></li>
+  	 			</ul>
+  	 		</div>
+  	 		<div class="footer-col">
+  	 			<h4>CONTACT US</h4>
+  	 			<ul>
+  	 				<li><a href="#">For Sale : EarthBubs@co.in</a></li>
+  	 				<li><a href="#">Call: +91 1234567890</a></li>
+  	 				<li><a href="#">For Complaints: 1800 202 2222</a></li>
+                    <li><a href="#">Chat Time: Our Team is available
+                        <br>       From Monday to Sunday From
+                        <br>       9.00AM to 8.00PM
+
+                    </a></li>
+                    <li><a href="#">For Complaints: Ebcustomercare.com</a></li>
+                    </ul>
+  	 		</div>
+  	 		<div class="footer-col">
+  	 			<h4>follow us</h4>
+  	 			<div class="social-links">
+  	 				<a href="#"><i class="fab fa-facebook-f"></i></a>
+  	 				<a href="#"><i class="fab fa-twitter"></i></a>
+  	 				<a href="#"><i class="fab fa-instagram"></i></a>
+  	 				<a href="#"><i class="fab fa-linkedin-in"></i></a>
+  	 			</div>
+  	 		</div>
+  	 	</div>
+  	 </div>
+     <footer>
+  <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+</footer>
+  </footer>
+
+
+</body>
+</html>

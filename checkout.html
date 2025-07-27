@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/1165876da6.js" crossorigin="anonymous"></script>
+    <style>
+          body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .checkout-container {
+            display: flex;
+            flex-wrap: wrap; /* Allows columns to wrap on smaller screens */
+            gap: 20px; /* Space between columns */
+            background-color: white;
+        }
+
+        .column {
+            flex: 1; /* Distribute available space equally */
+            min-width: 280px; /* Minimum width before columns wrap */
+            padding: 15px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+
+        .left-image-column {
+            display: flex;
+            align-items: center; /* Vertically center image */
+            justify-content: center; /* Horizontally center image */
+            background-color:white;
+        }
+
+        .center-image-column {
+            display: flex;
+            align-items: center; /* Vertically center image */
+            justify-content: center; /* Horizontally center image */
+            background-color: white;
+            overflow: hidden; 
+            width:200px;
+            height: 700px;
+            /* Hide overflowing parts of the image if needed */
+        }
+
+        .center-image-column img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cover the entire container while maintaining aspect ratio */
+            display: block; /* Ensure it behaves as a block element */
+        }
+
+        .right-text-column {
+            background-color: white;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            .checkout-container {
+                flex-direction: column; /* Stack columns vertically on smaller screens */
+            }
+            .column {
+                min-width: 100%; /* Take full width on small screens */
+            }
+        }
+        .quantity-selector {
+  display: flex; /* Arranges elements horizontally */
+  align-items: center; /* Vertically aligns elements */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden; /* Ensures borders are contained */
+  width: fit-content; /* Adjusts width to content */
+}
+
+.quantity-minus,
+.quantity-plus {
+  background-color: #00b4d8;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  color: #333;
+}
+
+.quantity-minus:hover,
+.quantity-plus:hover {
+  background-color: ;
+}
+
+.quantity-input {
+  width: 50px; /* Adjust as needed */
+  text-align: center;
+  border: none;
+  padding: 8px 0;
+  font-size: 16px;
+  -moz-appearance: textfield; /* Removes default number input arrows in Firefox */
+}
+
+/* Removes default number input arrows in WebKit browsers (Chrome, Safari) */
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.rating {
+
+  
+   color: gold;
+}
+.delivery-info {
+  display: flex; /* Enables Flexbox for the container */
+  flex-direction: column; /* Arranges items in a column (creating two rows) */
+  align-items: center; /* Centers items horizontally within the container */
+  gap: 15px; /* Adds space between the two rows */
+  padding: 20px;
+  border: 3px solid #00b4d8;
+  border-radius: 8px;
+  max-width: 300px; /* Adjust as needed */
+  margin: 20px auto; /* Centers the whole block on the page */
+  background-color: #f9f9f9;
+  color:black;
+}
+
+.delivery-item {
+  display: flex; /* Enables Flexbox for each item */
+  align-items: center; /* Aligns icon and text vertically */
+}
+
+.icon {
+  font-size: 24px;
+  margin-right: 10px;
+  color: black; /* Example color */
+}
+
+.delivery-item p {
+  margin: 0; /* Removes default paragraph margin */
+  font-size: 16px;
+  color: #333;
+}
+.container6 {
+  display: flex;
+  width:400px;
+  height: 50px;
+  justify-content: flex-end; /* Aligns items to the end (right) of the flex container */
+}
+button{
+    background-color:#00b4d8 ;
+    border:#e0e0e0;
+    border-radius: 10px;
+    
+}
+ .navbar {
+  display: flex; /* Makes elements in the navbar arrange horizontally */
+  justify-content: space-between; /* Distributes items with space between them */
+  align-items: center; /* Vertically aligns items in the center */
+  background-color: white; /* Dark background color */
+  padding: 10px 20px; /* Padding around the navbar */
+  color: #000000; /* White text color */
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  color:black;
+}
+
+.logo {
+  height: 40px; /* Adjust logo size as needed */
+  margin-right: 10px;
+  color:black;
+}
+
+.brand-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+}
+
+.navbar-links {
+  list-style: none; /* Removes default bullet points from list */
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navbar-links li {
+  margin-right: 20px;
+}
+
+.navbar-links a {
+  color: black;
+  text-decoration: none;
+  padding: 10px 0;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block; /* Allows the dropdown button and menu to be side-by-side */
+}
+
+.dropdown-content {
+  display: none; /* Hidden by default */
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(241, 239, 239, 0.959);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: white;
+  border: 1px solid black;
+  padding: 10px;
+  color:darkblue;
+  border-radius: 20px;
+  font-size: 18px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block; /* Shows dropdown menu on hover */
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar input {
+  border: 3px solid #00b4d8;
+  padding: 8px;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.search-bar button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.navbar-actions a {
+  color:black;
+  border:none;
+  text-decoration: none;
+  margin-left: 15px;
+  font-size: 1.2rem;
+}
+
+.navbar-actions a:hover {
+  color: #ddd;
+}
+ *{
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        color: white;
+    }
+    footer{
+        background: #343434;
+        padding-top: 50px;
+    }
+    .container{
+        width: 1140px;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+    }
+    .footer-content{
+        width: 33.3%;
+    }
+    h3{
+        font-size: 28px;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    .footer-content p{
+        width:190px;
+        margin: auto;
+        padding: 7px;
+    }
+    .footer-content ul{
+        text-align: center;
+    }
+    .list{
+        padding: 0;
+    }
+    h4{
+      color:black
+    }
+    .list li{
+        width: auto;
+        text-align: center;
+        list-style-type:none;
+        padding: 7px;
+        position: relative;
+    }
+    .list li::before{
+        content: '';
+        position: absolute;
+        transform: translate(-50%,-50%);
+        left: 50%;
+        top: 100%;
+        width: 0;
+        height: 2px;
+        background: #f18930;
+        transition-duration: .5s;
+    }
+    .list li:hover::before{
+        width: 70px;
+    }
+    .social-icons{
+        text-align: center;
+        padding: 0;
+    }
+    .social-icons li{
+        display: inline-block;
+        text-align: center;
+        padding: 5px;
+    }
+    .social-icons i{
+        color: white;
+        font-size: 25px;
+    }
+    a{
+        text-decoration: none;
+    }
+    a:hover{
+        color: ;
+    }
+    .social-icons i:hover{
+        color: #f18930;
+    }
+    .bottom-bar{
+        background: #f18930;
+        text-align: center;
+        padding: 10px 0;
+        margin-top: 50px;
+    }
+    .bottom-bar p{
+        color: #343434;
+        margin: 0;
+        font-size: 16px;
+        padding: 7px;
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+body{
+	line-height: 1.5;
+	font-family: 'Poppins', sans-serif;
+}
+*{
+	margin:0;
+	padding:0;
+	box-sizing: border-box;
+}
+.container{
+	max-width: 1170px;
+	margin:auto;
+}
+.row{
+	display: flex;
+	flex-wrap: wrap;
+}
+ul{
+	list-style: none;
+}
+.footer{
+	background-color:#00b4d8 ;
+    padding: 70px 0;
+}
+.footer-col{
+   width: 25%;
+   padding: 0 15px;
+
+}
+.footer-col h4{
+	font-size: 18px;
+	color: black;
+	text-transform: capitalize;
+	margin-bottom: 35px;
+	font-weight: 500;
+	position: relative;
+}
+.footer-col h4::before{
+	content: '';
+	position: absolute;
+	left:0;
+	bottom: -10px;
+	background-color: black;
+	height: 2px;
+	box-sizing: border-box;
+	width: 50px;
+}
+.footer-col ul li:not(:last-child){
+	margin-bottom: 10px;
+}
+.footer-col ul li a{
+	font-size: 16px;
+	text-transform: capitalize;
+	color: #ffffff;
+	text-decoration: none;
+	font-weight: 300;
+	color: black;
+	display: block;
+	transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+	color: #ffffff;
+	padding-left: 8px;
+}
+.footer-col .social-links a{
+	display: inline-block;
+	height: 40px;
+	width: 40px;
+	background-color: rgba(255,255,255,0.2);
+	margin:0 10px 10px 0;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 50%;
+	color: #ffffff;
+	transition: all 0.5s ease;
+}
+.footer-col .social-links a:hover{
+	color: #24262b;
+	background-color: #ffffff;
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+  <div class="navbar-brand">
+  <img src="images/logo.png" alt="Logo" class="logo">
+    <a href="#" class="brand-title">EarthBubs</a>
+ </div>
+    <ul class="navbar-links">
+    <li><a href="baby.html">Home</a></li>
+    <li class="dropdown">
+      <a href="product.html" class="dropbtn">Products</a>
+       <div class="dropdown-content">
+        <a href="pampers.html">Pampers</a>
+        <a href="boyfashion.html">Boy's Fashions</a>
+        <a href="girls fashion.html">Girl's Fashions</a>
+        <a href="soap.html">Scope</a>
+        <a href="stroller.html">Stroller</a>
+        <a href="#">Bottle</a>
+       </div>
+    </li>
+       <li><a href="offers.html">Offers</a></li>
+       <li><a href="">About</a></li>
+       <li><a href="#">Contact</a></li>
+  </ul>
+   <div class="navbar-actions">
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <button type="submit"><i class="fa fa-search"></i></button>
+      <a href="#"><i class="fa fa-shopping-cart"></i></a>
+      <a href="#"><i class="fa fa-user"></i></a>
+    </div>
+ </div>
+</nav>
+     <div class="checkout-container">
+        <div class="column left-image-column">
+            <img src="images/ck1.png" alt="Product Image 1" style="max-width: 100%; height: auto;">
+        </div>
+        <div class="column center-image-column">
+            <img src="images/ck2.png" alt="Product Image 2">
+        </div>
+        <div class="column right-text-column">
+            <h2>New Born Pampers Active baby
+            <br>Diapers,  Small,  22  count  & 
+            <br>Pampers Baby Dry Diapers
+            </h2>
+             <div class="rating">
+	            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>(18 Reviews)  |  in stock          
+              </div>            
+            <p>Give your baby the gentle care they deserve with 
+            <br>Earthbubs premium baby pampers, designed for 
+            <br>all-day  comfort and protection. Crafted with 
+            <br>Ultra-soft,  breathable materials, these Diapers 
+            <br>Keep your little one dry, happy,and rash-free. The 
+            <br>super-absorbent core locks in moisture for up to
+            <br>12 hours of leak-free protection, while the flexible
+            <br>waistband ensures a snug yet comfy fit as your
+            <br>baby moves and plays . PLus , a built-in wetness
+            <br>indicator makes changing time easier than ever.</p>
+            
+            <p>colours:</p> <p>Size: Free Size</p>
+
+            <p><del>MRP $1044</del>      Sale price $700.00</p>
+
+            <div class="quantity-selector">
+            <button class="quantity-minus">-</button>
+            <input type="number" class="quantity-input" value="1" min="2">
+           <button class="quantity-plus">+</button>
+            </div>
+            <div class="container6">
+             <button>Buy Now</button>
+            </div>
+
+            <div class="delivery-info">
+  <div class="delivery-item">
+    <span class="icon">&#x1F69A;</span> <!-- Delivery truck icon -->
+    <p>Free Delivery</p>
+    <br>
+    <br>
+
+    <p style="text-decoration : underline">Enter your postal code for delivery availability</p>
+    <hr>
+  </div>
+  
+  <div class="delivery-item">
+    <span class="icon">&#x1F504;</span> <!-- Return arrow icon -->
+    <p>Returns Delivery</p>
+    <p>Free 7 Days Delivery Returns.<p style="text-decoration : underline">Details</p></p>
+
+  </div>
+</div>
+
+        </div>
+        <footer class="footer">
+  	 <div class="container">
+  	 	<div class="row">
+  	 		<div class="footer-col">
+  	 			<h4>KNOW</h4>
+                <hr>
+  	 			<ul>
+  	 				<li><a href="#">About us</a></li>
+  	 				<li><a href="#">About EarthBubs Store</a></li>
+  	 				<li><a href="#">Bulk Purchase & Corporate Gifts</a></li>
+  	
+  	 			</ul>
+  	 		</div>
+  	 		<div class="footer-col">
+  	 			<h4>TERMS & CONDITIONS</h4>
+  	 			<ul>
+  	 				
+  	 				<li><a href="#">Shipping & Return Policies</a></li>
+  	 				<li><a href="#">Privacy Policy</a></li>
+  	 				<li><a href="#">FAQ's</a></li>
+  	 			</ul>
+  	 		</div>
+  	 		<div class="footer-col">
+  	 			<h4>CONTACT US</h4>
+  	 			<ul>
+  	 				<li><a href="#">For Sale : EarthBubs@co.in</a></li>
+  	 				<li><a href="#">Call: +91 1234567890</a></li>
+  	 				<li><a href="#">For Complaints: 1800 202 2222</a></li>
+                    <li><a href="#">Chat Time: Our Team is available
+                        <br>       From Monday to Sunday From
+                        <br>       9.00AM to 8.00PM
+
+                    </a></li>
+                    <li><a href="#">For Complaints: Ebcustomercare.com</a></li>
+                    </ul>
+  	 		</div>
+  	 		<div class="footer-col">
+  	 			<h4>follow us</h4>
+  	 			<div class="social-links">
+  	 				<a href="#"><i class="fab fa-facebook-f"></i></a>
+  	 				<a href="#"><i class="fab fa-twitter"></i></a>
+  	 				<a href="#"><i class="fab fa-instagram"></i></a>
+  	 				<a href="#"><i class="fab fa-linkedin-in"></i></a>
+  	 			</div>
+  	 		</div>
+  	 	</div>
+  	 </div>
+     <footer>
+  <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+</footer>
+  </footer>
+    </div>
+</body>
+</html>
